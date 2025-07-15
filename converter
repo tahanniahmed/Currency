@@ -1,0 +1,72 @@
+class CurrencyConverter:       #Defining the class for Currency Converter
+    def __init__(self,name):
+        self.rate={             # Initializing exchange currency rates and name of the user
+            "USD_EUR":0.95,
+            "GBP_INR":107.05,
+            "JPY_USD":0.0065,
+            "EUR_GBP":0.83}
+        self.name=name
+    
+    def convert_usd_to_eur(self):        #defining functions to convert the currencies
+         amount = self.amount("USD")
+         result = amount * self.rate["USD_EUR"]
+         print("The amount in EUR is", round(result, 2), "(Rounded up to two decimal places)")
+        
+    def convert_gbp_to_inr(self):
+         amount = self.amount("GBP")
+         result = amount * self.rate["GBP_INR"]
+         print("The amount in INR is", round(result, 2),"(Rounded up to two decimal places)")
+         
+    def convert_jpy_to_usd(self):
+        amount = self.amount("JPY")
+        result = amount * self.rate["JPY_USD"]
+        print("The amount in USD is", round(result, 2),"(Rounded up to two decimal places)")
+        
+    def convert_eur_to_gbp(self):
+        amount = self.amount("EUR")
+        result = amount * self.rate["EUR_GBP"]
+        print("The amount in GBP is", round(result, 2),"(Rounded up to two decimal places)")
+        
+    def amount(self,currency):           #Amount that user want to exchange
+        amount=float(input("Enter the amount in " + currency + ":"))
+        return amount
+
+    def display_menu(self):     #displaying the menu for conversion
+        print("\nCurrency Converter Menu:")
+        print("1. Convert USD to EUR")
+        print("2. Convert GBP to INR")
+        print("3. Convert JPY to USD")
+        print("4. Convert EUR to GBP")
+        print("5. Exit the Program")
+        
+def main():       #main function of the program where defined function are called
+    name=input("Enter your name:")
+    convert=CurrencyConverter(name)
+    
+    print("Welcome",name, "to the Currency Coverter Application")
+    
+    keep_going=1
+    while keep_going:
+        convert.display_menu()
+        choice=int(input("Please make a choice: "))
+        
+        if choice <= 0 or choice > 5:
+            print("Invalid number! Please enter a valid number.")
+        else:
+            if choice == 1:
+                convert.convert_usd_to_eur()
+            elif choice == 2:
+                convert.convert_gbp_to_inr()
+            elif choice == 3:
+                convert.convert_jpy_to_usd()
+            elif choice == 4:
+                convert.convert_eur_to_gbp()
+            elif choice == 5:
+                print("Exiting....")
+                keep_going = False  # Set to False to exit the loop
+            else:
+                print("Invalid choice. Please choose again.")
+    
+    print("Thank you for using the Currency Converter Application.")
+
+main() #calling the main function to run
